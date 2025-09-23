@@ -13,32 +13,53 @@ export const GlobalStyle = createGlobalStyle`
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* Panoramic background inspired by Portorož coastal scenery */
+    /* Vibrant, colorful and flashy animated background */
     background: 
+      radial-gradient(circle at 20% 80%, rgba(255, 0, 150, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(0, 255, 255, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(255, 255, 0, 0.2) 0%, transparent 50%),
       linear-gradient(
-        to bottom,
-        rgba(135, 206, 250, 0.8) 0%,
-        rgba(135, 206, 250, 0.6) 30%,
-        rgba(102, 126, 234, 0.8) 70%,
-        rgba(118, 75, 162, 0.9) 100%
+        135deg,
+        #ff0080 0%,
+        #ff8c00 20%,
+        #00ff80 40%,
+        #0080ff 60%,
+        #8000ff 80%,
+        #ff0080 100%
       ),
       linear-gradient(
         45deg,
-        #87CEEB 0%,
-        #4682B4 25%,
-        #6495ED 50%,
-        #4169E1 75%,
-        #667eea 100%
+        #ff6b6b 0%,
+        #4ecdc4 25%,
+        #45b7d1 50%,
+        #96ceb4 75%,
+        #ffeaa7 100%
       );
-    background-size: 100% 100%, 200% 200%;
+    background-size: 300% 300%, 400% 400%, 200% 200%, 300% 300%, 400% 400%;
     background-attachment: fixed;
     background-repeat: no-repeat;
+    animation: colorShift 12s ease-in-out infinite;
     min-height: 100vh;
     line-height: 1.6;
     position: relative;
   }
   
-  /* Add a subtle coastal atmosphere with an overlay */
+  @keyframes colorShift {
+    0%, 100% {
+      background-position: 0% 50%, 0% 50%, 0% 50%, 0% 50%, 0% 50%;
+    }
+    25% {
+      background-position: 100% 50%, 25% 75%, 50% 0%, 25% 25%, 75% 25%;
+    }
+    50% {
+      background-position: 50% 100%, 75% 25%, 100% 50%, 50% 75%, 50% 50%;
+    }
+    75% {
+      background-position: 25% 0%, 50% 100%, 25% 75%, 75% 0%, 25% 75%;
+    }
+  }
+  
+  /* Add animated geometric shapes and sparkle effects */
   body::before {
     content: '';
     position: fixed;
@@ -47,10 +68,69 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
     height: 100%;
     background: 
-      radial-gradient(ellipse at top, rgba(255, 255, 255, 0.1) 0%, transparent 70%),
-      radial-gradient(ellipse at bottom, rgba(135, 206, 250, 0.1) 0%, transparent 50%);
+      radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.8) 2px, transparent 2px),
+      radial-gradient(circle at 85% 85%, rgba(255, 255, 255, 0.6) 1px, transparent 1px),
+      radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.9) 1.5px, transparent 1.5px),
+      radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.7) 1px, transparent 1px),
+      radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.8) 2px, transparent 2px),
+      radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.6) 1px, transparent 1px);
+    background-size: 100px 100px, 150px 150px, 80px 80px, 120px 120px, 200px 200px, 90px 90px;
+    animation: sparkle 8s linear infinite;
     pointer-events: none;
     z-index: -1;
+    opacity: 0.4;
+  }
+  
+  @keyframes sparkle {
+    0%, 100% {
+      transform: translateX(0) translateY(0) rotate(0deg);
+      opacity: 0.4;
+    }
+    25% {
+      transform: translateX(10px) translateY(-5px) rotate(90deg);
+      opacity: 0.6;
+    }
+    50% {
+      transform: translateX(-5px) translateY(10px) rotate(180deg);
+      opacity: 0.3;
+    }
+    75% {
+      transform: translateX(15px) translateY(5px) rotate(270deg);
+      opacity: 0.7;
+    }
+  }
+  
+  /* Add floating geometric shapes for extra visual appeal */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.1) 45%, rgba(255, 255, 255, 0.1) 55%, transparent 60%),
+      linear-gradient(-45deg, transparent 40%, rgba(255, 255, 255, 0.08) 45%, rgba(255, 255, 255, 0.08) 55%, transparent 60%);
+    background-size: 60px 60px, 80px 80px;
+    animation: geometricFloat 15s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.3;
+  }
+  
+  @keyframes geometricFloat {
+    0%, 100% {
+      transform: translate(0, 0) rotate(0deg) scale(1);
+      opacity: 0.3;
+    }
+    33% {
+      transform: translate(20px, -15px) rotate(120deg) scale(1.1);
+      opacity: 0.5;
+    }
+    66% {
+      transform: translate(-15px, 20px) rotate(240deg) scale(0.9);
+      opacity: 0.2;
+    }
   }
 
   #root {
@@ -82,19 +162,25 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const colors = {
-  primary: '#667eea',
-  secondary: '#764ba2',
-  accent: '#f093fb',
+  primary: '#ff0080',
+  secondary: '#00ff80',
+  accent: '#0080ff',
   white: '#ffffff',
   lightGray: '#f8f9fa',
   gray: '#6c757d',
   darkGray: '#343a40',
   black: '#000000',
-  success: '#28a745',
-  warning: '#ffc107',
-  error: '#dc3545',
+  success: '#00ff80',
+  warning: '#ff8c00',
+  error: '#ff0080',
   shadow: 'rgba(0, 0, 0, 0.1)',
-  shadowHover: 'rgba(0, 0, 0, 0.2)'
+  shadowHover: 'rgba(0, 0, 0, 0.2)',
+  vibrant1: '#ff6b6b',
+  vibrant2: '#4ecdc4',
+  vibrant3: '#45b7d1',
+  vibrant4: '#96ceb4',
+  vibrant5: '#ffeaa7',
+  vibrant6: '#a8e6cf'
 };
 
 export const breakpoints = {
